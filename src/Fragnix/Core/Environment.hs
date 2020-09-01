@@ -13,85 +13,82 @@ import Data.Map (Map)
 import Data.Text (Text)
 import GHC.Generics (Generic)
 
-data Symbol
+data Entity
     = Value
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       }
       -- ^ value or function
     | Method
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       , className :: Name
       }
       -- ^ class method
     | Selector
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       , typeName :: Name
       , constructors :: [Name]
       }
       -- ^ record field selector
     | Constructor
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       , typeName :: Name
       }
       -- ^ data constructor
     | Type
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       }
       -- ^ type synonym
     | Data
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       }
       -- ^ data type
     | NewType
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       }
       -- ^ newtype
     | TypeFam
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       , associate :: Maybe Name
       }
       -- ^ type family
     | DataFam
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       , associate :: Maybe Name
       }
       -- ^ data family
     | Class
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       }
       -- ^ type class
     | PatternConstructor
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       , patternTypeName :: Maybe Name
       }
       -- ^ pattern synonym constructor
     | PatternSelector
-      { symbolModule :: ModuleName
+      { symbolModule :: Reference
       , symbolName :: Name
       , patternTypeName :: Maybe Name
       , patternConstructorName :: Name
       }
 
-deriving instance Show Symbol
-deriving instance Eq Symbol
-deriving instance Ord Symbol
-deriving instance Generic Symbol
-instance ToJSON Symbol
-instance FromJSON Symbol
-
--- | A map from module name to list of symbols it exports.
-type Environment = Map ModuleName [Symbol]
+deriving instance Show Entity
+deriving instance Eq Entity
+deriving instance Ord Entity
+deriving instance Generic Entity
+instance ToJSON Entity
+instance FromJSON Entity
 
 -- | The name of a Haskell module.
 data ModuleName = ModuleName Text
@@ -114,3 +111,7 @@ deriving instance Ord Name
 deriving instance Generic Name
 instance ToJSON Name
 instance FromJSON Name
+
+
+-- | A map from module name to list of symbols it exports.
+type Environment = Map ModuleName [Entity]
