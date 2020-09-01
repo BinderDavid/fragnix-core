@@ -1,7 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE DeriveGeneric #-}
-module Fragnix.Core.Update where
+module Fragnix.Core.Update
+  ( Update
+  , UpdateID
+  , PersistedUpdate(..)
+  ) where
 
 import Data.Aeson (ToJSON, FromJSON)
 import Data.Text (Text)
