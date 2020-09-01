@@ -1,0 +1,22 @@
+cabal-version:       2.2
+name:                fragnix-core
+version:             0.1.0.0
+synopsis:            Core datatypes for fragnix
+-- description:
+homepage:            github.com/BinderDavid/fragnix-core
+-- bug-reports:
+license:             BSD-3-Clause
+license-file:        LICENSE
+author:              David Binder
+maintainer:          binderd@informatik.uni-tuebingen.de
+-- copyright:
+category:            Development
+extra-source-files:  CHANGELOG.md
+
+library
+  exposed-modules:     Fragnix.Core.Slice
+  other-modules:
+  build-depends:       base ^>=4.13.0.0
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
