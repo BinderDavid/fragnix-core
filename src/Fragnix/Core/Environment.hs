@@ -1,13 +1,18 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE DeriveGeneric #-}
-module Fragnix.Core.Environment where
+module Fragnix.Core.Environment
+  ( Symbol(..)
+  , Environment
+  , Name(..)
+  , ModuleName(..)
+  ) where
 
 import Data.Aeson (ToJSON, FromJSON)
+import Data.Map (Map)
 import Data.Text (Text)
 import GHC.Generics (Generic)
 
-import Data.Map (Map)
 data Symbol
     = Value
       { symbolModule :: ModuleName
